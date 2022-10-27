@@ -1,11 +1,11 @@
 [default.general]
-chip = "nrf52833_xxAA"
+chip = "nrf52833_xxAA" #芯片信息
 
 [default.reset]
-halt_afterwards = true
+halt_afterwards = true #重置后挂起程序，这样就不会进入无线循环
 
-[default.rtt]
+[default.rtt] #禁用rtt
 enabled = false
 
-[default.gdb]
+[default.gdb] #开启gdb debug
 enabled = true
