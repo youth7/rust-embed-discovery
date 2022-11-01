@@ -10,8 +10,13 @@ use microbit::hal::prelude::*;
 #[entry]
 fn main() -> ! {//发散函数，《The embedonomicon》也说过
     let mut board = Board::take().unwrap();
+    // 这个api控制的是整行/列的pin的状态，而一个灯点亮的条件是对应的pin上同时有高低两种状态
+    // 例如以下代码会点亮四个角的led
     board.display_pins.col1.set_low().unwrap();
     board.display_pins.row1.set_high().unwrap();
+
+    board.display_pins.col5.set_low().unwrap();
+    board.display_pins.row5.set_high().unwrap();
     // infinite loop; just so we don't leave this stack frame
     loop {}
 }
