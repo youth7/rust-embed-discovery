@@ -2,9 +2,9 @@
 chip = "nrf52833_xxAA" #芯片信息
 
 [default.reset]
-halt_afterwards = false #直接运行程序，不再挂起
+halt_afterwards = false #禁用重置后挂起程序
 
-[default.rtt] #禁用rtt
+[default.rtt] #开启rtt
 enabled = false
 
 [default.gdb] #关闭gdb debug
