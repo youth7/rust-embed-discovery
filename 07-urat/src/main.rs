@@ -1,7 +1,6 @@
 #![no_main]
 #![no_std]
 
-
 use core::fmt::Write;
 use core::str;
 use cortex_m_rt::entry; // cortex-m的运行时
@@ -48,12 +47,11 @@ fn main() -> ! {
     }
 }
 
-fn send_str(tx: &mut UarteTx<UARTE0>, buffer: &mut Vec<u8, 32>){
-    // buffer.reverse();
+fn send_str(tx: &mut UarteTx<UARTE0>, buffer: &mut Vec<u8, 32>){//发送字符串
     let content = str::from_utf8(&buffer).unwrap();
-    rprintln!("{}", content);
-    tx.write_str(content).unwrap();
-    tx.write_str("\r\n").unwrap();
-    nb::block!(tx.flush()).unwrap();
-    buffer.clear();
+    rprintln!("{}", content);//在rtt控制台上检查接收的内容
+    tx.write_str(content).unwrap();//原封不动回写全部内容
+    tx.write_str("\r\n").unwrap();//加上回车换行以便显示
+    nb::block!(tx.flush()).unwrap();//刷新缓冲区以免内容残留
+    buffer.clear();//清空buffer以接收下一次内容
 }
