@@ -5,7 +5,7 @@ chip = "nrf52833_xxAA" #芯片信息
 halt_afterwards = false #禁用重置后挂起程序
 
 [default.rtt] #开启rtt
-enabled = false
+enabled = true
 
 [default.gdb] #关闭gdb debug
 enabled = false
