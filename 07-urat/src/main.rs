@@ -40,7 +40,7 @@ fn main() -> ! {
             send_str(&mut tx, &mut buffer);
         }else{
             if buffer.push(byte).is_err() {
-                send_str(&mut tx, &mut buffer);
+                send_str(&mut tx, &mut buffer);//如果超出长度就立即发送出去
                 continue;
             }
         }
