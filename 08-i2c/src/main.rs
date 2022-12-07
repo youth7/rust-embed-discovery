@@ -37,6 +37,7 @@ fn main() -> ! {
     //初始化i2c设备
     let i2c = Twim::new(board.TWIM0, board.i2c_internal.into(), FREQUENCY_A::K100);
     let mut sensor = init_sensor(i2c);
+    let mut sensor = sensor.into_mag_continuous().ok().unwrap();
     let mut buffer: Vec<u8, 32> = Vec::new();
     loop {
         //跟i2c通讯
