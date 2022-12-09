@@ -39,20 +39,17 @@ fn main() -> ! {
     let mut sensor = sensor.into_mag_continuous().ok().unwrap();
     let mut buffer: Vec<u8, 32> = Vec::new();
     loop {
-        //跟i2c通讯
-        //回显读取到的内容
-
         //阻塞读取uart设备
         let byte = nb::block!(rx.read()).unwrap();
         if byte == 0x0D {
             //判断读取到的内容
             let input = core::str::from_utf8(&buffer).unwrap();
             rprintln!("输入内容:{}", input);
-            match input {
+            match input {//跟i2c通讯
                 "a" => {
                     while !sensor.accel_status().unwrap().xyz_new_data {} // 等待直到数据就绪
                     let data = sensor.accel_data().unwrap();
-                    writeln!(
+                    writeln!(//回显读取到的内容
                         &mut tx,
                         "Acceleration: x {} y {} z {}\r",
                         data.x, data.y, data.z
